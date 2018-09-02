@@ -18,7 +18,7 @@ public class Bank {
             account = new Account(name, Integer.parseInt(currentAcountBalance));
 
         } catch (IOException e) {
-            System.out.println("No Account found!");
+            System.out.println("New Account Created!");
         }
         return account;
     }

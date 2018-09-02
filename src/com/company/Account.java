@@ -2,6 +2,7 @@ package com.company;
 
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.Scanner;
 
 public class Account {
     String name;
@@ -27,6 +28,20 @@ public class Account {
         return this.amount;
     }
 
+    public void handleDeposit() {
+        System.out.println("Please Enter an amount: ");
+        Scanner in = new Scanner(System.in);
+        String amount = in.nextLine();
+        deposit(Integer.parseInt(amount));
+    }
+
+    public void handleWithdraw() {
+        System.out.println("Please Enter an amount: ");
+        Scanner in = new Scanner(System.in);
+        String amount = in.nextLine();
+        withdraw(Integer.parseInt(amount));
+    }
+
     public void deposit(int amount) {
         this.amount += amount;
         this.writeToFile();
@@ -37,6 +52,7 @@ public class Account {
             System.out.println("Not enough in account to withdraw");
         } else {
             this.amount -= amount;
+            this.writeToFile();
         }
     }
 }

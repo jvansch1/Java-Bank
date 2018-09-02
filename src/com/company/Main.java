@@ -6,7 +6,8 @@ public class Main {
 
     public static void main(String[] args) {
         Bank bank = new Bank();
-	    Account account = bank.getAccount("John");
+        String name = getAccountName();
+	    Account account = bank.getAccount(name);
 	    if (account != null) {
 	        bankLoop(account);
         }
@@ -14,24 +15,31 @@ public class Main {
     }
 
     public static void bankLoop(Account account) {
-
         int userInput = 0;
-        while (userInput != 3) {
+        while (userInput != 4) {
             printMenu();
             userInput = getUserInput();
             handleUserDecision(account, userInput);
-            System.out.println(account.getBalance());
         }
+    }
 
+    public static String getAccountName() {
+        System.out.println("Please enter account name");
+        Scanner in = new Scanner(System.in);
+        String s = in.nextLine();
+        return s;
     }
 
     public static void handleUserDecision(Account account, int choice) {
         switch(choice) {
             case 1:
-                account.deposit(100);
+                account.handleDeposit();
                 break;
             case 2:
-                account.withdraw(100);
+                account.handleWithdraw();
+                break;
+            case 3:
+                System.out.println(account.getBalance());
                 break;
         }
     }
@@ -47,7 +55,8 @@ public class Main {
         System.out.println();
         System.out.println("1. Deposit");
         System.out.println("2. Withdraw");
-        System.out.println("3. Exit");
+        System.out.println("3. Balance");
+        System.out.println("4. Exit");
         System.out.println("> ");
     }
 }
